@@ -1,0 +1,484 @@
+{
+  "intents": [
+    {
+      "tag": "intent_1",
+      "patterns": [
+        "What are the courses available in your college?"
+      ],
+      "responses": [
+        "Our college offers B.Tech in CSE, ECE, EEE, Mechanical, Civil, and IT. We also provide postgraduate courses like M.Tech, MBA, and MCA."
+      ]
+    },
+    {
+      "tag": "intent_2",
+      "patterns": [
+        "Tell me about the CSE department."
+      ],
+      "responses": [
+        "The Computer Science and Engineering department focuses on programming, artificial intelligence, data science, and software development. It has modern computer labs, experienced faculty, and good placement records."
+      ]
+    },
+    {
+      "tag": "intent_3",
+      "patterns": [
+        "What is the fee for CSE course?"
+      ],
+      "responses": [
+        "The annual fee for B.Tech in CSE is around ₹85,000. It may change slightly depending on hostel and transport facilities."
+      ]
+    },
+    {
+      "tag": "intent_4",
+      "patterns": [
+        "How many years is the CSE course?"
+      ],
+      "responses": [
+        "The B.Tech in CSE is a 4-year undergraduate course divided into 8 semesters."
+      ]
+    },
+    {
+      "tag": "intent_5",
+      "patterns": [
+        "What subjects are taught in CSE?"
+      ],
+      "responses": [
+        "Some core subjects include Programming, Data Structures, Algorithms, Database Management Systems, Computer Networks, AI, and Machine Learning."
+      ]
+    },
+    {
+      "tag": "intent_6",
+      "patterns": [
+        "What is the placement record for CSE?"
+      ],
+      "responses": [
+        "CSE students are placed in top companies like Infosys, TCS, Wipro, Amazon, and Accenture with good salary packages."
+      ]
+    },
+    {
+      "tag": "intent_7",
+      "patterns": [
+        "Tell me about the ECE department."
+      ],
+      "responses": [
+        "The Electronics and Communication Engineering department teaches communication systems, VLSI, microprocessors, and embedded systems. It has advanced labs and active research projects."
+      ]
+    },
+    {
+      "tag": "intent_8",
+      "patterns": [
+        "How much is the fee for ECE?"
+      ],
+      "responses": [
+        "The fee for B.Tech in ECE is approximately ₹80,000 per year."
+      ]
+    },
+    {
+      "tag": "intent_9",
+      "patterns": [
+        "Duration of ECE course?"
+      ],
+      "responses": [
+        "The ECE course duration is 4 years, with 8 semesters including lab work and projects."
+      ]
+    },
+    {
+      "tag": "intent_10",
+      "patterns": [
+        "Tell me about the EEE department."
+      ],
+      "responses": [
+        "The Electrical and Electronics Engineering department focuses on power systems, control systems, and electrical machines. It has well-equipped electrical labs and experienced staff."
+      ]
+    },
+    {
+      "tag": "intent_11",
+      "patterns": [
+        "Fee for EEE course?"
+      ],
+      "responses": [
+        "The yearly fee for B.Tech in EEE is around ₹78,000."
+      ]
+    },
+    {
+      "tag": "intent_12",
+      "patterns": [
+        "Tell me about the Mechanical department."
+      ],
+      "responses": [
+        "The Mechanical Engineering department deals with design, thermal systems, manufacturing, and robotics. Students get hands-on training in workshops and CAD/CAM labs."
+      ]
+    },
+    {
+      "tag": "intent_13",
+      "patterns": [
+        "How much is the Mechanical Engineering fee?"
+      ],
+      "responses": [
+        "The Mechanical Engineering course costs around ₹82,000 per year."
+      ]
+    },
+    {
+      "tag": "intent_14",
+      "patterns": [
+        "Tell me about Civil Engineering department."
+      ],
+      "responses": [
+        "The Civil department offers subjects like structural design, construction management, and geotechnical engineering. It also provides site visits and field training for practical learning."
+      ]
+    },
+    {
+      "tag": "intent_15",
+      "patterns": [
+        "Fee for Civil Engineering?"
+      ],
+      "responses": [
+        "The Civil Engineering course fee is approximately ₹80,000 per year."
+      ]
+    },
+    {
+      "tag": "intent_16",
+      "patterns": [
+        "Tell me about the IT department."
+      ],
+      "responses": [
+        "The Information Technology department focuses on software development, cloud computing, and data analytics. It provides good placement support in top IT companies."
+      ]
+    },
+    {
+      "tag": "intent_17",
+      "patterns": [
+        "Fee for IT course?"
+      ],
+      "responses": [
+        "The IT course fee is around ₹83,000 per year."
+      ]
+    },
+    {
+      "tag": "intent_18",
+      "patterns": [
+        "What is the eligibility for admission?"
+      ],
+      "responses": [
+        "Students must have passed 10+2 with Physics, Chemistry, and Mathematics and should qualify in EAMCET or equivalent entrance exam."
+      ]
+    },
+    {
+      "tag": "intent_19",
+      "patterns": [
+        "Do you provide hostel facilities?"
+      ],
+      "responses": [
+        "Yes, hostel facilities are available for both boys and girls with clean rooms, good food, Wi-Fi, and security."
+      ]
+    },
+    {
+      "tag": "intent_20",
+      "patterns": [
+        "What is the hostel fee?"
+      ],
+      "responses": [
+        "The hostel fee is around ₹35,000 to ₹45,000 per year depending on room type and facilities."
+      ]
+    },
+    {
+      "tag": "intent_21",
+      "patterns": [
+        "Is canteen available inside the campus?"
+      ],
+      "responses": [
+        "Yes, our college has a hygienic canteen that provides tasty and affordable food for students and staff."
+      ]
+    },
+    {
+      "tag": "intent_22",
+      "patterns": [
+        "What are the placement opportunities?"
+      ],
+      "responses": [
+        "Our college has tie-ups with many reputed companies. Every year, students get placed in companies like TCS, Infosys, Wipro, HCL, and Tech Mahindra."
+      ]
+    },
+    {
+      "tag": "intent_23",
+      "patterns": [
+        "How is the faculty?"
+      ],
+      "responses": [
+        "All departments have highly qualified and supportive faculty members who guide students in academics, projects, and placements."
+      ]
+    },
+    {
+      "tag": "intent_24",
+      "patterns": [
+        "What are the facilities available in the campus?"
+      ],
+      "responses": [
+        "The campus includes computer labs, libraries, sports grounds, seminar halls, a cafeteria, and transportation facilities."
+      ]
+    },
+    {
+      "tag": "intent_25",
+      "patterns": [
+        "Does the college offer scholarships?"
+      ],
+      "responses": [
+        "Yes, scholarships are provided to meritorious students and those eligible under government welfare schemes."
+      ]
+    },
+    {
+      "tag": "intent_26",
+      "patterns": [
+        "Tell me about MBA course."
+      ],
+      "responses": [
+        "The MBA course is a 2-year postgraduate programme focusing on Finance, HR, and Marketing with practical exposure and internships."
+      ]
+    },
+    {
+      "tag": "intent_27",
+      "patterns": [
+        "What is the fee for MBA?"
+      ],
+      "responses": [
+        "The MBA fee is around ₹90,000 per year."
+      ]
+    },
+    {
+      "tag": "intent_28",
+      "patterns": [
+        "Tell me about MCA course."
+      ],
+      "responses": [
+        "The MCA course is a 3-year postgraduate programme focusing on computer applications, software design, and programming."
+      ]
+    },
+    {
+      "tag": "intent_29",
+      "patterns": [
+        "Fee for MCA?"
+      ],
+      "responses": [
+        "The MCA course fee is approximately ₹85,000 per year."
+      ]
+    },
+    {
+      "tag": "intent_30",
+      "patterns": [
+        "Is Wi-Fi available in campus?"
+      ],
+      "responses": [
+        "Yes, the entire campus is Wi-Fi enabled for students and faculty."
+      ]
+    },
+    {
+      "tag": "intent_31",
+      "patterns": [
+        "Are internships provided?"
+      ],
+      "responses": [
+        "Yes, the college encourages internships and the placement cell helps students connect with reputed companies."
+      ]
+    },
+    {
+      "tag": "intent_32",
+      "patterns": [
+        "Is transport facility available?"
+      ],
+      "responses": [
+        "Yes, transport buses are available from major nearby cities and towns for both students and staff."
+      ]
+    },
+    {
+      "tag": "intent_33",
+      "patterns": [
+        "Tell me about the library."
+      ],
+      "responses": [
+        "The library is spacious with thousands of books, journals, and digital resources. It is open from morning till evening for student access."
+      ]
+    },
+    {
+      "tag": "intent_34",
+      "patterns": [
+        "Is there a separate hostel for girls?"
+      ],
+      "responses": [
+        "Yes, we have separate and secure hostels for boys and girls with 24-hour security and wardens."
+      ]
+    },
+    {
+      "tag": "intent_35",
+      "patterns": [
+        "Does the college conduct cultural events?"
+      ],
+      "responses": [
+        "Yes, our college organizes annual cultural fests, sports meets, and technical events for student engagement."
+      ]
+    },
+    {
+      "tag": "intent_36",
+      "patterns": [
+        "What is the admission process?"
+      ],
+      "responses": [
+        "Admission is based on entrance exam ranks like EAMCET, followed by counselling and document verification."
+      ]
+    },
+    {
+      "tag": "intent_37",
+      "patterns": [
+        "Does the college offer M.Tech?"
+      ],
+      "responses": [
+        "Yes, M.Tech courses are offered in CSE, ECE, and Mechanical branches."
+      ]
+    },
+    {
+      "tag": "intent_38",
+      "patterns": [
+        "Is there a training and placement cell?"
+      ],
+      "responses": [
+        "Yes, our Training and Placement Cell provides guidance, mock interviews, and soft skill sessions for students."
+      ]
+    },
+    {
+      "tag": "intent_39",
+      "patterns": [
+        "What is the timing of college?"
+      ],
+      "responses": [
+        "The regular class timings are from 9:00 AM to 4:30 PM, Monday to Saturday."
+      ]
+    },
+    {
+      "tag": "intent_40",
+      "patterns": [
+        "Does the college have a medical facility?"
+      ],
+      "responses": [
+        "Yes, there is a first-aid centre with medical staff available on campus for students and staff."
+      ]
+    },
+    {
+      "tag": "intent_41",
+      "patterns": [
+        "Can I get admission through management quota?"
+      ],
+      "responses": [
+        "Yes, a limited number of seats are available under the management quota as per college and government guidelines."
+      ]
+    },
+    {
+      "tag": "intent_42",
+      "patterns": [
+        "What are the lab facilities?"
+      ],
+      "responses": [
+        "Each department has its own labs. CSE has programming labs, ECE has communication and VLSI labs, and Mechanical has workshops."
+      ]
+    },
+    {
+      "tag": "intent_43",
+      "patterns": [
+        "What companies visit for placements?"
+      ],
+      "responses": [
+        "Companies like Infosys, Wipro, TCS, Accenture, HCL, Amazon, and Tech Mahindra visit our campus for placements."
+      ]
+    },
+    {
+      "tag": "intent_44",
+      "patterns": [
+        "What is the dress code in college?"
+      ],
+      "responses": [
+        "Students are expected to wear formal dress. On lab days, lab coats are mandatory. Uniforms are required on specified days."
+      ]
+    },
+    {
+      "tag": "intent_45",
+      "patterns": [
+        "What is the strength of each branch?"
+      ],
+      "responses": [
+        "Each branch generally admits around 120 students per year, depending on the intake capacity approved by AICTE."
+      ]
+    },
+    {
+      "tag": "intent_46",
+      "patterns": [
+        "What is the total fee for 4 years B.Tech?"
+      ],
+      "responses": [
+        "The total fee for 4 years of B.Tech is around ₹3.2 to ₹3.4 lakhs depending on the branch."
+      ]
+    },
+    {
+      "tag": "campus_area",
+      "patterns": [
+        "Tell me about campus area",
+        "How big is the campus?",
+        "Campus size?",
+        "Area of Vel Tech campus",
+        "College land area",
+        "Campus infrastructure details",
+        "How large is the college campus?"
+      ],
+      "responses": [
+        "Vel Tech University campus is spread over approximately 66.75 acres with a built-up area of around 1.5 lakh square meters. It has modern classrooms, labs, hostels, and other world-class facilities."
+      ]
+    },
+    {
+      "tag": "placement_rate",
+      "patterns": [
+        "What is the placement rate?",
+        "How is the placement record?",
+        "Tell me about the placement percentage",
+        "Placement success rate in Vel Tech",
+        "How many students get placed every year?"
+      ],
+      "responses": [
+        "Vel Tech University maintains a strong placement record with around 80% to 90% of eligible students placed every year. Top recruiters include TCS, Infosys, Wipro, Accenture, and Tech Mahindra."
+      ]
+    },
+
+    {
+      "tag": "college_blocks",
+      "patterns": [
+        "How many blocks are there in the college?",
+        "Number of blocks in Vel Tech",
+        "Tell me about the college blocks",
+        "Blocks in the campus",
+        "How many buildings are there?",
+        "Total blocks in Vel Tech University"
+      ],
+      "responses": [
+        "Vel Tech University has several academic and administrative blocks including separate blocks for each department, research centres, libraries, and hostels — totaling around 29 major academic blocks within the campus."
+      ]
+    },
+
+    {
+      "tag": "intent_48",
+      "patterns": [
+        "hi",
+        "hello",
+        "hey",
+        "hi there",
+        "hello there"
+      ],
+      "responses": [
+        "Hello there! 😊 I’m EduBot, your friendly college assistant. How can I help you today?"
+      ]
+    },
+    {
+      "tag": "intent_47",
+      "patterns": [
+        "How can I contact the college?"
+      ],
+      "responses": [
+        "You can contact us through the official website or call the admission helpline available in the contact section."
+      ]
+    }
+  ]
+}
