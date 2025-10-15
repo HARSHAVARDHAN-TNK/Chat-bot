@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: veltech-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn backend.app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10
+
+  - type: web
+    name: veltech-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: npx serve -s frontend/build
