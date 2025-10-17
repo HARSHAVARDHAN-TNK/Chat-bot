@@ -1,105 +1,68 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import os
+import joblib
 import json
-import numpy as np
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+import random
 
 app = Flask(__name__)
 CORS(app)
 
-# Paths
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODELS_DIR = os.path.join(BASE_DIR, "models")
-EMBEDDINGS_PATH = os.path.join(MODELS_DIR, "embeddings.npy")
-META_PATH = os.path.join(MODELS_DIR, "meta.json")
+# Load intents
+with open("intents.json", encoding="utf-8") as f:
+    intents = json.load(f)["intents"]
 
-# Globals
-model = None
-embeddings = None
-patterns = []
-tags = []
-responses = []
+# Load trained model
+model = joblib.load("intent_model.pkl")
 
-def load_resources():
-    """Load embeddings and meta data"""
-    global model, embeddings, patterns, tags, responses
+# Helper: find intent object by tag
+def find_intent(tag):
+    for intent in intents:
+        if intent["tag"] == tag:
+            return intent
+    return None
 
-    if not os.path.exists(META_PATH) or not os.path.exists(EMBEDDINGS_PATH):
-        app.logger.error("Model files not found. Please run train.py first.")
-        return False
-
-    with open(META_PATH, "r", encoding="utf-8") as f:
-        meta = json.load(f)
-
-    patterns = meta.get("patterns", [])
-    tags = meta.get("tags", [])
-    responses = meta.get("responses", [])
-
-    embeddings = np.load(EMBEDDINGS_PATH)
-
-    if len(patterns) == 0 or embeddings.shape[0] == 0:
-        app.logger.error("Empty dataset or embeddings. Re-run train.py with valid intents.")
-        return False
-
-    model = SentenceTransformer("all-MiniLM-L6-v2")
-    app.logger.info(f"Loaded {len(patterns)} patterns with embeddings shape {embeddings.shape}")
-    return True
-
-READY = load_resources()
-
-@app.route("/ping", methods=["GET"])
-def ping():
-    return jsonify({"status": "ok" if READY else "not_ready"})
+@app.route("/", methods=["GET"])
+def home():
+    return "<h2>EduBot API is running 🚀</h2><p>Use POST /chat to talk to the bot.</p>"
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    if not READY:
-        return jsonify({"error": "Model not ready. Run train.py first."}), 503
+    data = request.get_json(force=True) or {}
+    user_msg = (data.get("message") or "").strip()
+    if not user_msg:
+        return jsonify({"reply": "Please type a question."}), 400
 
-    data = request.get_json(silent=True) or {}
-    query = str(data.get("query", "")).strip()
+    # Predict intent
+    probs = model.predict_proba([user_msg])[0]
+    pred = model.predict([user_msg])[0]
+    confidence = float(probs.max())
 
-    if not query:
-        return jsonify({"answer": "Please enter a valid question.", "tag": "fallback"}), 200
-
-    try:
-        query_vec = model.encode([query])
-        scores = cosine_similarity(query_vec, embeddings)[0]
-        best_idx = int(np.argmax(scores))
-        best_score = float(scores[best_idx])
-
-        threshold = 0.55
-        if best_score < threshold:
-            default_message = (
-                "I’m sorry, I don’t have that information right now. "
-                "Please contact the Vel Tech office for official details:\n"
-                "📞 +91-44-2684 1601\n"
-                "📧 admissions@veltech.edu.in\n"
-                "🌐 www.veltech.edu.in"
-            )
-            return jsonify({
-                "answer": default_message,
-                "tag": "fallback",
-                "match": {"pattern": patterns[best_idx], "score": best_score}
-            }), 200
-
-        reply = responses[best_idx]
+    # Threshold (lowered for small dataset)
+    if confidence < 0.25:
         return jsonify({
-            "answer": reply,
-            "tag": tags[best_idx],
-            "match": {"pattern": patterns[best_idx], "score": best_score}
-        }), 200
+            "intent": "uncertain",
+            "confidence": round(confidence, 3),
+            "reply": "I’m not fully sure what you mean. Try asking about admissions, courses, or placements."
+        })
 
-    except Exception as e:
-        app.logger.exception(f"Error in /chat: {e}")
-        return jsonify({"error": "Internal error processing query."}), 500
+    # Get response for predicted intent
+    intent_obj = find_intent(pred)
+    if intent_obj and intent_obj.get("responses"):
+        return jsonify({
+            "intent": pred,
+            "confidence": round(confidence, 3),
+            "reply": random.choice(intent_obj["responses"])
+        })
 
-@app.errorhandler(404)
-def not_found(e):
-    return jsonify({"error": "Route not found"}), 404
+    # Fallback
+    return jsonify({
+        "intent": "uncertain",
+        "confidence": round(confidence, 3),
+        "reply": "Sorry, I don’t have an answer for that yet."
+    })
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-
+    # Important for Render: bind to 0.0.0.0 and use PORT env var if available
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
