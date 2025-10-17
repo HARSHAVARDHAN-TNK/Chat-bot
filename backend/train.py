@@ -1,45 +1,38 @@
 import json
+import joblib
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
 import os
-import numpy as np
-from sentence_transformers import SentenceTransformer
 
-DATA_PATH = os.path.join("data", "intents.json")
-MODEL_PATH = os.path.join("models")
-
-# Load dataset safely
-with open(DATA_PATH, "r", encoding="utf-8") as f:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(BASE_DIR, "data", "intents.json"), encoding="utf-8") as f:
     data = json.load(f)
 
-if isinstance(data, dict) and "intents" in data:
-    intents = data["intents"]
-elif isinstance(data, list):
-    intents = data
-else:
-    raise ValueError("❌ Invalid dataset format: must be {\"intents\": [...]} or a list of intents")
+X, y = [], []
+for intent in data["intents"]:
+    for pattern in intent["patterns"]:
+        X.append(pattern)
+        y.append(intent["tag"])
 
-print(f"✅ Loaded {len(intents)} intents")
+# Split for quick validation
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
-# Extract patterns, tags, responses
-patterns, tags, responses = [], [], []
-for intent in intents:
-    tag = intent.get("tag", "unknown")
-    for pattern in intent.get("patterns", []):
-        patterns.append(pattern)
-        tags.append(tag)
-        responses.append(intent.get("responses", [""])[0])
+# Build pipeline: TF-IDF + Logistic Regression
+model = Pipeline([
+    ("tfidf", TfidfVectorizer(lowercase=True, stop_words="english", ngram_range=(1, 2))),
+    ("clf", LogisticRegression(max_iter=2000))
+])
 
-print(f"✅ Total patterns: {len(patterns)}")
+# Train
+model.fit(X_train, y_train)
 
-# Encode with transformer
-model = SentenceTransformer("all-MiniLM-L6-v2")
-embeddings = model.encode(patterns)
+# Evaluate
+print("Validation accuracy:", model.score(X_test, y_test))
 
-# Save embeddings + metadata
-os.makedirs(MODEL_PATH, exist_ok=True)
-np.save(os.path.join(MODEL_PATH, "embeddings.npy"), embeddings)
-
-meta = {"patterns": patterns, "tags": tags, "responses": responses}
-with open(os.path.join(MODEL_PATH, "meta.json"), "w", encoding="utf-8") as f:
-    json.dump(meta, f, indent=2, ensure_ascii=False)
-
-print("✅ Training complete. Files saved to models/")
+# Save model
+joblib.dump(model, "intent_model.pkl")
+print("Saved model as intent_model.pkl")

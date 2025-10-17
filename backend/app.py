@@ -7,10 +7,11 @@ import random
 app = Flask(__name__)
 CORS(app)
 
-# Load intents
-with open("intents.json", encoding="utf-8") as f:
-    intents = json.load(f)["intents"]
+import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(BASE_DIR, "data", "intents.json"), encoding="utf-8") as f:
+    intents = json.load(f)["intents"]
 # Load trained model
 model = joblib.load("intent_model.pkl")
 
