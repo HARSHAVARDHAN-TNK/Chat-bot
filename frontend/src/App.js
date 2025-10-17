@@ -5,10 +5,10 @@ import "./App.css";
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const [typing, setTyping] = useState(false); // NEW
+  const [typing, setTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Auto-scroll
+  // Auto-scroll to bottom when messages or typing change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, typing]);
@@ -25,7 +25,7 @@ function App() {
       const data = await askEduBot(input);
       setMessages(prev => [
         ...prev,
-        { sender: "bot", text: data.answer, tag: data.tag }
+        { sender: "bot", text: data.reply, tag: data.intent }
       ]);
     } catch {
       setMessages(prev => [
